@@ -163,5 +163,7 @@ cython_debug/
 .idea/
 .DS_Store
 .vscode
-hugging_face_transformers/fine_tuning/data
 hugging_face_transformers/models
+hugging_face_transformers/fine_tuning/fine_tune_quickstart/model
+hugging_face_transformers/fine_tuning/fine_tune_quickstart/data
+hugging_face_transformers/fine_tuning/fine_tune_quickstart/log.txt
