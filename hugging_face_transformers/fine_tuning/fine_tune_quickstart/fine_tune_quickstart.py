@@ -42,8 +42,10 @@ model = AutoModelForSequenceClassification.from_pretrained("/Volumes/WD_BLACK/mo
 
 # 训练超参数
 model_dir = "models/bert-base-cased"
+# 训练过程指标监控
 # logging_steps 默认值为500，根据我们的训练数据和步长，将其设置为100
 training_args = TrainingArguments(output_dir=f"{model_dir}/test_trainer",
+                                  evaluation_strategy="epoch",
                                   logging_dir=f"{model_dir}/test_trainer/runs",
                                   logging_steps=100)
 
@@ -55,12 +57,6 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
-
-# 训练过程指标监控
-training_args = TrainingArguments(output_dir=f"{model_dir}/test_trainer",
-                                  evaluation_strategy="epoch",
-                                  logging_dir=f"{model_dir}/test_trainer/runs",
-                                  logging_steps=100)
 logger.info("微调训练配置完成")
 
 # ===================================5、微调训练===================================
@@ -75,7 +71,8 @@ trainer = Trainer(model=model,
 
 trainer.train()
 small_test_dataset = tokenized_datasets["test"].shuffle(seed=64).select(range(100))
-trainer.evaluate(small_test_dataset)
+print(trainer.evaluate(small_test_dataset))
+logger.info(trainer.evaluate(small_test_dataset))
 logger.info("微调训练完成")
 
 # ===================================6、保存微调模型和训练状态===================================
