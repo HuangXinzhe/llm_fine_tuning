@@ -11,9 +11,11 @@ from utils import logger
 # 此处为huggingface的datasets库，加载yelp_review数据集
 # 可以自制数据集
 logger.info("开始加载数据集")
-dataset = load_dataset("yelp_review_full", 
-                       cache_dir="./data",
-                       )
+# dataset = load_dataset("yelp_review_full", 
+#                        cache_dir="./data",
+                    #    )
+dataset = load_dataset(
+    "/Users/huangxinzhe/code/llm_fine_tuning/hugging_face_transformers/fine_tuning/fine_tune_quickstart/datasets/yelp_review_full")
 logger.info("数据加载完成")
 
 # ===================================2、预处理数据===================================
@@ -50,7 +52,7 @@ training_args = TrainingArguments(output_dir=f"{model_dir}/test_trainer",
                                   logging_steps=100)
 
 # 训练过程中的指标评估
-metric = evaluate.load("accuracy")
+metric = evaluate.load("./accuracy")
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
