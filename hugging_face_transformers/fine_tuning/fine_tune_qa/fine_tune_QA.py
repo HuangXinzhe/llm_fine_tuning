@@ -145,6 +145,18 @@ trained_model_path = f"{model_dir}/{model_name}-finetuned-squad-trained"
 model_to_save = trainer.save_model(trained_model_path)
 
 # =================================4、评估模型=================================
+# 加载模型
+trained_model = AutoModelForQuestionAnswering.from_pretrained(
+    trained_model_path)
+trained_trainer = Trainer(
+    trained_model,
+    args,
+    train_dataset=tokenized_datasets["train"],
+    eval_dataset=tokenized_datasets["validation"],
+    data_collator=data_collator,
+    tokenizer=tokenizer,
+)
+
 for batch in trainer.get_eval_dataloader():
     break
 batch = {k: v.to(trainer.args.device) for k, v in batch.items()}
