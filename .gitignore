@@ -171,3 +171,5 @@ hugging_face_transformers/fine_tuning_wandb/accuracy
 hugging_face_transformers/fine_tuning_wandb/data
 hugging_face_transformers/fine_tuning_wandb/models
 hugging_face_transformers/fine_tuning_wandb/wandb
+.env
+private_data_fine_tune/private_data/data
