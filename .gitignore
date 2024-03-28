@@ -175,3 +175,5 @@ hugging_face_transformers/fine_tuning_wandb/wandb
 private_data_fine_tune/private_data/data
 data_screening/deita_tutorial/deita
 fine_tune/LLaMA_factory_tutorial/LLaMA-Factory
+fine_tune/gpt2/output
+fine_tune/gpt2/wandb
